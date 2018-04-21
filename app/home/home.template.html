@@ -1,0 +1,70 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h1>My todo list</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <input type="text" ng-model="$ctrl.todo" style="width: 50%; padding: 8px;">
+            <button class="btn btn-primary" ng-click="$ctrl.saveItem($ctrl.todo)">Save</button>
+        </div>
+    </div>
+    <br>
+    <br>
+    <div class="row" ng-repeat="i in $ctrl.list track by $index">
+        <div class="col-md-12" id="done-{{i.status}}">
+            <h4>
+                <input type="checkbox" ng-click="$ctrl.changeStatus($index)">
+
+                    {{i.listContent}}
+
+                <span class="material-icons" style="padding: 15px;" ng-click="$ctrl.editContent($index)">mode_edit</span>
+                <span class="glyphicon glyphicon-trash" ng-click="$ctrl.deleteContent($index)"></span>
+                <div id="{{$index}}" style="display:none">
+                    <input ng-model="$ctrl.editableListContent">
+                    <button ng-click="$ctrl.save($index)">Save</button>
+                </div>
+            </h4>
+        </div>
+    </div>
+    <br>
+    <br>
+
+    <hr>
+
+    <div class="row">
+        <div class="col-md-6">
+            <h2>
+                Completed Work
+            </h2>
+        </div>
+        <div class="col-md-6">
+            <h2>
+                Work to complete
+            </h2>
+        </div>
+    </div>
+
+    <div class="row" ng-repeat="i in $ctrl.list track by $index" >
+
+        <div class="col-md-6" ng-if="i.status==true">
+            <p>
+                {{i.listContent}}
+            </p>
+        </div>
+
+        <div class="col-md-6 col-md-offset-6" ng-if="i.status==false">
+            <p>
+                {{i.listContent}}
+            </p>
+        </div>
+
+
+    </div>
+</div>
+
+
+<script src="home.module.js"></script>
+
+
